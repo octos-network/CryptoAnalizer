@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    packagingOptions {
+        pickFirst  'META-INF/license.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+    compileSdkVersion 30
+    buildFeatures {
+        dataBinding true
+    }
+    defaultConfig {
+        applicationId "com.android.example.krypto_analizer"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
+    // implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
+
+    // Core with Ktx
+    implementation "androidx.core:core-ktx:$version_core"
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+
+    // Constraint Layout
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+
+    // ViewModel and LiveData
+    // implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
+
+    // Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    // Retrofit - Deprecated plugins - No more required
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+
+    // Retrofit with Moshi Converter
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
+    // Testing
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //Crypto
+    implementation("io.cryptoapis:cryptoapis-java-client:1.3.0")
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation "com.squareup.okhttp3:logging-interceptor:$version_loggingInterceptor"
+
+
+}
