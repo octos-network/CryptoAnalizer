@@ -38,11 +38,11 @@ private val retrofit = Retrofit.Builder()
 interface CryptoApiService {
      @Headers("X-API-Key: 4a7f07327d40ad33486b5446566e4398510f4c95")
      @GET("/v1/exchanges/meta")
-     fun getMeta(): Call<CryptoResponseMeta>
+     fun getMeta(): List<CryptoResponseMeta>
 
     @Headers("X-API-Key: 32acf8474237ba06318177f4772dd6f0a148831e")
     @GET("/v1/exchanges")
-    fun getBase(): Call<CryptoResponseBase>
+    fun getBase(): List<CryptoResponseBase>
 }
 
 

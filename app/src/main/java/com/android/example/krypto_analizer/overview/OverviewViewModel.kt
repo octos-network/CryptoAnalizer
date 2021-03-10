@@ -3,46 +3,61 @@ package com.android.example.krypto_analizer.overview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.viewModelScope
 import com.android.example.krypto_analizer.CryptoApi
 import com.android.example.krypto_analizer.network.CryptoResponseBase
 import com.android.example.krypto_analizer.network.CryptoResponseMeta
+import kotlinx.coroutines.launch
 
 class OverviewViewModel : ViewModel() {
 
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<String>()
 
-    val response: LiveData<String>
-        get() = _response
+    val status: LiveData<String>
+        get() = _status
+
+    private val _meta = MutableLiveData<CryptoResponseMeta>()
+
+    val meta: LiveData<CryptoResponseMeta>
+        get() = _meta
+
+    private val _base = MutableLiveData<CryptoResponseBase>()
+
+    val base: LiveData<CryptoResponseBase>
+        get() = _base
 
     init {
-        //getCryptoAnalizerMeta()
-        getCryptoAnalizerBase()
+        getCryptoAnalizerMeta()
+        //getCryptoAnalizerBase()
     }
 
     private fun getCryptoAnalizerMeta() {
-        CryptoApi.retrofitService.getMeta().enqueue( object: Callback<CryptoResponseMeta> {
-            override fun onFailure(call: Call<CryptoResponseMeta>, t: Throwable) {
-                _response.value = "Failure: " + t.message
+        viewModelScope.launch {
+            try {
+                var listResult = CryptoApi.retrofitService.getMeta()
+                _status.value = "Success: ${listResult.size} Crypto Coins loaded"
+                if (listResult.size > 0) {
+                    _meta.value = listResult[0]
+                }
+            } catch (e: Exception) {
+                _status.value = "Failure: ${e.message}"
             }
-
-            override fun onResponse(call: Call<CryptoResponseMeta>, response: Response<CryptoResponseMeta>) {
-                _response.value = "Success: ${response.body()?.payload?.size} Crypto Coins loaded"
-            }
-        })
+        }
     }
 
     private fun getCryptoAnalizerBase() {
-        CryptoApi.retrofitService.getBase().enqueue( object: Callback<CryptoResponseBase> {
-            override fun onFailure(call: Call<CryptoResponseBase>, t: Throwable) {
-                _response.value = "Failure " + t.message
-            }
-
-            override fun onResponse(call: Call<CryptoResponseBase>, response: Response<CryptoResponseBase>) {
-                _response.value = "Success: ${response.body()?.payload?.size} Crypto Coins loaded"
-            }
-        })
+       viewModelScope.launch {
+           try {
+               var listResult = CryptoApi.retrofitService.getBase()
+               _status.value = "Success: ${listResult.size} Crypto Coins loaded"
+               if (listResult.size > 0) {
+                   _base.value = listResult[0]
+               }
+           } catch (e: Exception) {
+               _status.value = "Failure: ${e.message}"
+           }
+       }
     }
 }
+
+//             android:text="@{viewModel.meta.payload}"
