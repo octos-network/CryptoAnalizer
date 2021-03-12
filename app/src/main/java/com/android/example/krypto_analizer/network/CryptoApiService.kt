@@ -29,7 +29,6 @@ private val okHttpClient = OkHttpClient.Builder()
 private val retrofit = Retrofit.Builder()
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
-        //.addConverterFactory(ScalarsConverterFactory.create())
         .baseUrl(BASE_URL)
         .build()
 
@@ -43,9 +42,3 @@ interface CryptoApiService {
 object CryptoApi {
     val retrofitService: CryptoApiService by lazy { retrofit.create(CryptoApiService::class.java) }
 }
-
-
-// "Content-Type: application/json",
-//        "X-API-Key: 4a7f07327d40ad33486b5446566e4398510f4c95"
-//         .addHeader("Content-Type", "application/json")
-//        .addHeader("X-API-Key", "4a7f07327d40ad33486b5446566e4398510f4c95")
