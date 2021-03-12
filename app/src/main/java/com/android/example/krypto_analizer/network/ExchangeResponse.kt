@@ -1,5 +1,5 @@
 package com.android.example.krypto_analizer.network
 
-data class CryptoResponseBase(
+data class ExchangeResponse(
         val meta: Any,
-        val payload: List<CryptoDataBase>)
+        val payload: List<Exchange>)

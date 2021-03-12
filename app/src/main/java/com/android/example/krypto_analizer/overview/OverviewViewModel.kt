@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.example.krypto_analizer.network.CryptoApi
-import com.android.example.krypto_analizer.network.CryptoDataBase
+import com.android.example.krypto_analizer.network.Exchange
 import kotlinx.coroutines.launch
 
 class OverviewViewModel : ViewModel() {
@@ -16,19 +16,19 @@ class OverviewViewModel : ViewModel() {
     val status: LiveData<String>
         get() = _status
 
-    private val _base = MutableLiveData<CryptoDataBase>()
+    private val _base = MutableLiveData<Exchange>()
 
-    val base: LiveData<CryptoDataBase>
+    val base: LiveData<Exchange>
         get() = _base
 
     init {
-        getCryptoAnalizerBase()
+        getExchanges()
     }
 
-    private fun getCryptoAnalizerBase() {
+    private fun getExchanges() {
        viewModelScope.launch {
            try {
-               val listResult = CryptoApi.retrofitService.getBase().body()!!.payload
+               val listResult = CryptoApi.retrofitService.getExchanges().body()!!.payload
                _status.value = "Success: ${listResult.size} Crypto Coins loaded"
                Log.d("API_Service", _status.value!!)
                if (listResult.size > 0) {

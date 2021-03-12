@@ -2,7 +2,7 @@ package com.android.example.krypto_analizer.network
 
 import com.squareup.moshi.Json
 
-data class CryptoDataBase(
+data class Exchange(
         @Json(name = "_id") val id: String,
         val exchangeId: String,
         val name: String,
