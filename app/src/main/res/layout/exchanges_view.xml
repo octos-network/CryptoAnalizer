@@ -7,4 +7,12 @@
             name="exchange"
             type="com.android.example.krypto_analizer.network.Exchange" />
     </data>
+    <TextView
+        android:id="@+id/exchange_name"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:padding="2dp"
+        android:text="@{exchange.name}"
+        android:textSize="40sp"
+        tools:text="Binance"/>
 </layout>

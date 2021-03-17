@@ -22,6 +22,8 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        binding.exchangeAdapter.adapter = ExchangeAdapter(ExchangeAdapter.OnClickListener {})
+
         return binding.root
     }
 }

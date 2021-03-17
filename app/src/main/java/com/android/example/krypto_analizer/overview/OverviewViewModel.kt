@@ -16,10 +16,15 @@ class OverviewViewModel : ViewModel() {
     val status: LiveData<String>
         get() = _status
 
-    private val _base = MutableLiveData<Exchange>()
+    private val _exchanges = MutableLiveData<List<Exchange>>()
 
-    val base: LiveData<Exchange>
-        get() = _base
+    val exchanges: LiveData<List<Exchange>>
+        get() = _exchanges
+
+    private val _navigateToSelectedProperty = MutableLiveData<Exchange>()
+
+    val navigateToSelectedProperty: LiveData<Exchange>
+        get() = _navigateToSelectedProperty
 
     init {
         getExchanges()
@@ -28,15 +33,10 @@ class OverviewViewModel : ViewModel() {
     private fun getExchanges() {
        viewModelScope.launch {
            try {
-               val listResult = CryptoApi.retrofitService.getExchanges().body()!!.payload
-               _status.value = "Success: ${listResult.size} Crypto Coins loaded"
-               Log.d("API_Service", _status.value!!)
-               if (listResult.size > 0) {
-                   _base.value = listResult[0]
-               }
+               _exchanges.value = CryptoApi.retrofitService.getExchanges().body()!!.payload
            } catch (e: Exception) {
-               _status.value = "Failure: ${e.message}"
-               Log.d("API_Service", _status.value!!)
+               _exchanges.value = ArrayList()
+               Log.d("crypto_exchange", e.message.toString())
            }
        }
     }
