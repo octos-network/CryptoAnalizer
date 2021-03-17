@@ -9,11 +9,13 @@ import com.android.example.krypto_analizer.network.CryptoApi
 import com.android.example.krypto_analizer.network.Exchange
 import kotlinx.coroutines.launch
 
+enum class CryptoApiStatus { LOADING, ERROR, DONE}
+
 class OverviewViewModel : ViewModel() {
 
-    private val _status = MutableLiveData<String>()
+    private val _status = MutableLiveData<CryptoApiStatus>()
 
-    val status: LiveData<String>
+    val status: LiveData<CryptoApiStatus>
         get() = _status
 
     private val _exchanges = MutableLiveData<List<Exchange>>()
@@ -32,9 +34,12 @@ class OverviewViewModel : ViewModel() {
 
     private fun getExchanges() {
        viewModelScope.launch {
+           _status.value = CryptoApiStatus.LOADING
            try {
                _exchanges.value = CryptoApi.retrofitService.getExchanges().body()!!.payload
+               _status.value = CryptoApiStatus.DONE
            } catch (e: Exception) {
+               _status.value = CryptoApiStatus.ERROR
                _exchanges.value = ArrayList()
                Log.d("crypto_exchange", e.message.toString())
            }
