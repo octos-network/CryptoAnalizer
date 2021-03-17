@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="exchanges"
+            name="exchange"
             type="com.android.example.krypto_analizer.network.Exchange" />
     </data>
 </layout>
