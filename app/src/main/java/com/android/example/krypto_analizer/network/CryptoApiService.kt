@@ -12,6 +12,8 @@ import retrofit2.http.Headers
 
 private const val BASE_URL = "https://api.cryptoapis.io"
 
+//private const val HEADER = "X-API-Key: 32acf8474237ba06318177f4772dd6f0a148831e"
+
 private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
@@ -34,6 +36,7 @@ private val retrofit = Retrofit.Builder()
 
 interface CryptoApiService {
     @Headers("X-API-Key: 32acf8474237ba06318177f4772dd6f0a148831e")
+
     @GET("/v1/exchanges")
     suspend fun getExchanges(): Response<ExchangeResponse>
 }
