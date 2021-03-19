@@ -11,6 +11,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://rest.coinapi.io"
+enum class CoinApiFilter(val value: String) { SHOW_ALL(""), SHOW_FIRST_TEN("BTC,NIS,LTC,VEN,XRP,NMC,USDT,BLC,DOGE,NVC")}
 
 private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
@@ -36,7 +37,7 @@ private val retrofit = Retrofit.Builder()
 interface CoinApiService {
     @Headers("X-CoinAPI-Key: 6FCAC8F0-6B80-4761-803C-2E4C11A0BA0C")
     @GET("/v1/assets")
-    suspend fun getAssets(): List<Asset>
+    suspend fun getAssets(@Query("filter_asset_id") type: String): List<Asset>
 }
 
 object CoinApi {
