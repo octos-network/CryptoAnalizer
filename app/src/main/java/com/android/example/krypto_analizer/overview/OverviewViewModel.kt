@@ -5,43 +5,43 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.example.krypto_analizer.network.CryptoApi
-import com.android.example.krypto_analizer.network.Exchange
+import com.android.example.krypto_analizer.network.Asset
+import com.android.example.krypto_analizer.network.CoinApi
 import kotlinx.coroutines.launch
 
-enum class CryptoApiStatus { LOADING, ERROR, DONE}
+enum class CoinApiStatus { LOADING, ERROR, DONE}
 
 class OverviewViewModel : ViewModel() {
 
-    private val _status = MutableLiveData<CryptoApiStatus>()
+    private val _status = MutableLiveData<CoinApiStatus>()
 
-    val status: LiveData<CryptoApiStatus>
+    val status: LiveData<CoinApiStatus>
         get() = _status
 
-    private val _exchanges = MutableLiveData<List<Exchange>>()
+    private val _assets = MutableLiveData<List<Asset>>()
 
-    val exchanges: LiveData<List<Exchange>>
-        get() = _exchanges
+    val assets: LiveData<List<Asset>>
+        get() = _assets
 
-    private val _navigateToSelectedProperty = MutableLiveData<Exchange>()
+    private val _navigateToSelectedAsset = MutableLiveData<Asset>()
 
-    val navigateToSelectedProperty: LiveData<Exchange>
-        get() = _navigateToSelectedProperty
+    val navigateToSelectedAsset: LiveData<Asset>
+        get() = _navigateToSelectedAsset
 
     init {
-        getExchanges()
+        getAssets()
     }
 
-    private fun getExchanges() {
+    private fun getAssets() {
        viewModelScope.launch {
-           _status.value = CryptoApiStatus.LOADING
+           _status.value = CoinApiStatus.LOADING
            try {
-               _exchanges.value = CryptoApi.retrofitService.getExchanges().body()!!.payload
-               _status.value = CryptoApiStatus.DONE
+               _assets.value = CoinApi.retrofitService.getAssets()
+               _status.value = CoinApiStatus.DONE
            } catch (e: Exception) {
-               _status.value = CryptoApiStatus.ERROR
-               _exchanges.value = ArrayList()
-               Log.d("crypto_exchange", e.message.toString())
+               _status.value = CoinApiStatus.ERROR
+               _assets.value = ArrayList()
+               Log.d("coin_asset", e.message.toString())
            }
        }
     }

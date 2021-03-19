@@ -22,7 +22,7 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.exchangeAdapter.adapter = ExchangeAdapter(ExchangeAdapter.OnClickListener {})
+        binding.assetAdapter.adapter = AssetAdapter(AssetAdapter.OnClickListener {})
 
         return binding.root
     }

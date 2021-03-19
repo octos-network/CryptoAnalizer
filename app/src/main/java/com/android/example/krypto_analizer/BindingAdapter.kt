@@ -4,28 +4,28 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.example.krypto_analizer.network.Exchange
-import com.android.example.krypto_analizer.overview.CryptoApiStatus
-import com.android.example.krypto_analizer.overview.ExchangeAdapter
+import com.android.example.krypto_analizer.network.Asset
+import com.android.example.krypto_analizer.overview.AssetAdapter
+import com.android.example.krypto_analizer.overview.CoinApiStatus
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Exchange>?) {
-    val adapter = recyclerView.adapter as ExchangeAdapter
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asset>?) {
+    val adapter = recyclerView.adapter as AssetAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("cryptoApiStatus")
-fun bindStatus(statusImageView: ImageView, status: CryptoApiStatus?) {
+fun bindStatus(statusImageView: ImageView, status: CoinApiStatus?) {
     when (status) {
-        CryptoApiStatus.LOADING -> {
+        CoinApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        CryptoApiStatus.ERROR -> {
+        CoinApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
-        CryptoApiStatus.DONE -> {
+        CoinApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
     }

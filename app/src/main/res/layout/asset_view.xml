@@ -4,36 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="exchange"
-            type="com.android.example.krypto_analizer.network.Exchange" />
+            name="asset"
+            type="com.android.example.krypto_analizer.network.Asset" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.android.example.krypto_analizer.ExchangeAdapter">
+        tools:context="com.android.example.krypto_analizer.AssetAdapter">
 
         <TextView
-            android:id="@+id/exchange_name"
+            android:id="@+id/asset_name"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:padding="2dp"
-            android:text="@{exchange.name}"
+            android:text="@{asset.name}"
             android:textSize="25sp"
-            tools:text="Binance"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:id="@+id/exchange_volume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="@{exchange.volume}"
-            android:textSize="15sp"
-            tools:text="id42069"
+            tools:text="BitCoin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
