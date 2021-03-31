@@ -41,6 +41,13 @@ interface CoinApiServiceAssets {
     suspend fun getAssets(@Query("filter_asset_id") type: String): List<Asset>
 }
 
+interface CoinApiServiceIcons {
+    @Headers("X-CoinAPI-Key: 6FCAC8F0-6B80-4761-803C-2E4C11A0BA0C")
+    @GET("/v1/assets/icons/32")
+    suspend fun getIcons(): List<Icon>
+}
+
 object CoinApi {
-    val retrofitService: CoinApiServiceAssets by lazy { retrofit.create(CoinApiServiceAssets::class.java) }
+    val retrofitServiceAssets: CoinApiServiceAssets by lazy { retrofit.create(CoinApiServiceAssets::class.java)}
+    val retrofitServiceIcons: CoinApiServiceIcons by lazy { retrofit.create(CoinApiServiceIcons::class.java) }
 }

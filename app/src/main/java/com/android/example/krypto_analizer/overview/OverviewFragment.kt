@@ -36,8 +36,8 @@ class OverviewFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         viewModel.updateFilter(
             when (item.itemId) {
-                R.id.show_first_ten_crypto_menu -> CoinApiFilterAssetId.SHOW_BEST_TEN_CRYPTO
-                R.id.show_first_ten_no_crypto_menu -> CoinApiFilterAssetId.SHOW_BEST_TEN_CURRENCY
+                R.id.show_best_ten_crypto_menu -> CoinApiFilterAssetId.SHOW_BEST_TEN_CRYPTO
+                R.id.show_best_ten_currency_menu -> CoinApiFilterAssetId.SHOW_BEST_TEN_CURRENCY
                 else -> CoinApiFilterAssetId.SHOW_ALL
             }
         )
