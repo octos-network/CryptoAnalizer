@@ -6,4 +6,7 @@
     <item
         android:id="@+id/show_best_ten_crypto_menu"
         android:title="Show best 10 crypto currency's"/>
+    <item
+        android:id="@+id/show_best_ten_currency_menu"
+        android:title="Show best 10 currency's"/>
 </menu>

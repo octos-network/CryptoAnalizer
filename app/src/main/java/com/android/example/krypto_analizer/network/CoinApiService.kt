@@ -11,7 +11,8 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://rest.coinapi.io"
-enum class CoinApiFilter(val value: String) { SHOW_ALL(""), SHOW_FIRST_TEN("BTC,NIS,LTC,VEN,XRP,NMC,USDT,BLC,DOGE,NVC")}
+enum class CoinApiFilterAssetId(val value: String) { SHOW_ALL(""), SHOW_BEST_TEN_CRYPTO("BTC,NIS,LTC,VEN,XRP,NMC,USDT,BLC,DOGE,NVC"),
+    SHOW_BEST_TEN_CURRENCY("USD,EUR,PLN,CNY,JPY,AUD,CHF,GBP,SEK,DKK")}
 
 private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
