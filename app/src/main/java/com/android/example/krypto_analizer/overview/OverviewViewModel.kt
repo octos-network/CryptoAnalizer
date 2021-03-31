@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.example.krypto_analizer.network.Asset
 import com.android.example.krypto_analizer.network.CoinApi
-import com.android.example.krypto_analizer.network.CoinApiFilter
+import com.android.example.krypto_analizer.network.CoinApiFilterAssetId
 import kotlinx.coroutines.launch
 
 enum class CoinApiStatus { LOADING, ERROR, DONE}
@@ -30,10 +30,10 @@ class OverviewViewModel : ViewModel() {
         get() = _navigateToSelectedAsset
 
     init {
-        getAssets(CoinApiFilter.SHOW_ALL)
+        getAssets(CoinApiFilterAssetId.SHOW_ALL)
     }
 
-    private fun getAssets(filter: CoinApiFilter) {
+    private fun getAssets(filter: CoinApiFilterAssetId) {
        viewModelScope.launch {
            _status.value = CoinApiStatus.LOADING
            try {
@@ -47,7 +47,7 @@ class OverviewViewModel : ViewModel() {
        }
     }
 
-    fun updateFilter(filter: CoinApiFilter) {
+    fun updateFilter(filter: CoinApiFilterAssetId) {
         getAssets(filter)
     }
 }

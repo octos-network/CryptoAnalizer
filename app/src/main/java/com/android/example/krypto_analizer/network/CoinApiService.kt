@@ -34,12 +34,12 @@ private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .build()
 
-interface CoinApiService {
+interface CoinApiServiceAssets {
     @Headers("X-CoinAPI-Key: 6FCAC8F0-6B80-4761-803C-2E4C11A0BA0C")
     @GET("/v1/assets")
     suspend fun getAssets(@Query("filter_asset_id") type: String): List<Asset>
 }
 
 object CoinApi {
-    val retrofitService: CoinApiService by lazy { retrofit.create(CoinApiService::class.java) }
+    val retrofitService: CoinApiServiceAssets by lazy { retrofit.create(CoinApiServiceAssets::class.java) }
 }

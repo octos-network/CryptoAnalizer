@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.example.krypto_analizer.R
 import com.android.example.krypto_analizer.databinding.FragmentOverviewBinding
-import com.android.example.krypto_analizer.network.CoinApiFilter
+import com.android.example.krypto_analizer.network.CoinApiFilterAssetId
 
 class OverviewFragment : Fragment() {
 
@@ -36,8 +36,8 @@ class OverviewFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         viewModel.updateFilter(
             when (item.itemId) {
-                R.id.show_first_ten_menu -> CoinApiFilter.SHOW_FIRST_TEN
-                else -> CoinApiFilter.SHOW_ALL
+                R.id.show_first_ten_crypto_menu -> CoinApiFilterAssetId.SHOW_BEST_TEN_CRYPTO
+                else -> CoinApiFilterAssetId.SHOW_ALL
             }
         )
         return true

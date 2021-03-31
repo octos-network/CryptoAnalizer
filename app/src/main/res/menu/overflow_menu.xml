@@ -4,6 +4,6 @@
         android:id="@+id/show_all_menu"
         android:title="Show all"/>
     <item
-        android:id="@+id/show_first_ten_menu"
-        android:title="Show first 10"/>
+        android:id="@+id/show_best_ten_crypto_menu"
+        android:title="Show best 10 crypto currency's"/>
 </menu>
