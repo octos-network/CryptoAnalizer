@@ -22,7 +22,7 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.assetAdapter.adapter = AssetAdapter(AssetAdapter.OnClickListener {})
+        binding.assetAdapter.adapter = AssetIconAdapter(AssetIconAdapter.OnClickListener {})
 
         setHasOptionsMenu(true)
         return binding.root

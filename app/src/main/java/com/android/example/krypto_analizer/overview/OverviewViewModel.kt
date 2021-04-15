@@ -44,7 +44,7 @@ class OverviewViewModel : ViewModel() {
        viewModelScope.launch {
            _status.value = CoinApiStatus.LOADING
            try {
-               _assets.value = CoinApi.retrofitServiceAssets.getAssets(filter.value)
+               _assets.value = CoinApi.retrofitService.getAssets(filter.value)
                _status.value = CoinApiStatus.DONE
            } catch (e: Exception) {
                _status.value = CoinApiStatus.ERROR
@@ -57,7 +57,7 @@ class OverviewViewModel : ViewModel() {
     private fun getIcons() {
         viewModelScope.launch {
             try {
-                _icons.value = CoinApi.retrofitServiceIcons.getIcons()
+                _icons.value = CoinApi.retrofitService.getIcons()
             } catch (e: Exception) {
                 _icons.value = ArrayList()
                 Log.d("coin_icons", e.message.toString())

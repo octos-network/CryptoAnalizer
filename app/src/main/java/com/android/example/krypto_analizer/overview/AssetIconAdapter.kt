@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.example.krypto_analizer.databinding.AssetViewBinding
 import com.android.example.krypto_analizer.network.Asset
 
-class AssetAdapter(val onClickListener: OnClickListener) :
-        ListAdapter<Asset, AssetAdapter.AssetsViewHolder>(DiffCallback) {
+class AssetIconAdapter(val onClickListener: OnClickListener) :
+        ListAdapter<Asset, AssetIconAdapter.AssetsViewHolder>(DiffCallback) {
 
     class AssetsViewHolder(private var binding: AssetViewBinding) :
             RecyclerView.ViewHolder(binding.root) {
