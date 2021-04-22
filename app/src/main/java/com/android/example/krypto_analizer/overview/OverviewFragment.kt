@@ -3,7 +3,9 @@ package com.android.example.krypto_analizer.overview
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.android.example.krypto_analizer.R
 import com.android.example.krypto_analizer.databinding.FragmentOverviewBinding
 import com.android.example.krypto_analizer.network.CoinApiFilterAssetId
@@ -22,7 +24,16 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.assetAdapter.adapter = AssetIconAdapter(AssetIconAdapter.OnClickListener {})
+        binding.assetAdapter.adapter = AssetIconAdapter(AssetIconAdapter.OnClickListener {
+            viewModel.displayAssetDetails(it)
+        })
+
+        viewModel.navigateToSelectedAsset.observe(this, Observer {
+            if ( null != it) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
+                viewModel.displayAssetDetailsComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
         return binding.root

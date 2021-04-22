@@ -12,14 +12,18 @@
         tools:layout="@layout/fragment_overview" >
         <action
             android:id="@+id/action_showDetail"
-            app:destination="@+id/detailFragment"/>
+            app:destination="@id/detailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.android.example.krypto_analizer.overview.OverviewFragment"
-        android:label="fragment_overview"
+        android:name="com.android.example.krypto_analizer.detail.DetailFragment"
+        android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="selectedAsset"
+            app:argType="com.android.example.krypto_analizer.network.Asset"
+            />
     </fragment>
 
 </navigation>

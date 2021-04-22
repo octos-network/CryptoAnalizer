@@ -65,6 +65,14 @@ class OverviewViewModel : ViewModel() {
         }
     }
 
+    fun displayAssetDetails(asset: Asset) {
+        _navigateToSelectedAsset.value = asset
+    }
+
+    fun displayAssetDetailsComplete() {
+        _navigateToSelectedAsset.value = null
+    }
+
     fun updateFilter(filter: CoinApiFilterAssetId) {
         getAssets(filter)
     }

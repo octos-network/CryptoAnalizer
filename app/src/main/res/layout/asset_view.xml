@@ -24,8 +24,8 @@
             android:id="@+id/asset_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/ic_paid"
             tools:src="@drawable/ic_paid" />
 
@@ -33,11 +33,12 @@
             android:id="@+id/asset_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/asset_icon"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_toEndOf="@id/asset_icon"
             android:text="@{asset.name}"
-            tools:text="Bitcoin"/>
+            android:textColor="#de000000"
+            tools:text="Bitcoin" />
 
         <TextView
             android:id="@+id/asset_priceUsd"
@@ -45,10 +46,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/asset_name"
             android:layout_gravity="center_vertical"
-            android:layout_toEndOf="@id/asset_icon"
             android:layout_marginLeft="16dp"
+            android:layout_toEndOf="@id/asset_icon"
+            android:textColor="#de000000"
             app:price="@{asset}"
-            tools:text="3$"/>
+            tools:text="3$" />
 
     </RelativeLayout>
 </layout>

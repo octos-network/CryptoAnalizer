@@ -1,7 +1,10 @@
 package com.android.example.krypto_analizer.network
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Asset(
     @Json(name = "asset_id") val assetId : String,
     val name: String?,
@@ -19,4 +22,4 @@ data class Asset(
     @Json(name = "volume_1day_usd") val volumeOneDayUsd: String?,
     @Json(name = "volume_1mth_usd") val volumeOneMonthUsd: String?,
     @Json(name = "price_usd") val priceUsd: String?,
-    @Json(name = "id_icon") val iconId: String?)
+    @Json(name = "id_icon") val iconId: String?) : Parcelable
